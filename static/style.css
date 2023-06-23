@@ -1,0 +1,15 @@
+body {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-family: sans-serif;
+}
+
+a{
+    color: rgb(78, 78, 78);
+}
+
+header, #flexy{
+    display: flex;
+    justify-content: space-between;
+}

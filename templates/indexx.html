@@ -1,0 +1,10 @@
+{%extends "layout.html" %}
+{% block body %}
+    <h2>Homepage</h2>
+
+    {% for message in messages %}
+        <p> {{message.content}} - by
+        <a href="{{url_for('user_profile', username=message.user.username)}}">    
+            {{ message.user.username }}</a> </p>
+    {% endfor %}            
+{% endblock %}

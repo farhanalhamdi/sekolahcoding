@@ -1,0 +1,35 @@
+{%extends "layout.html" %}
+{% block body %}
+    <div id="flexy">
+        <div class="">
+            <h2>Profil {{ user.username }}</h2>
+
+            
+            {% if user.username != session.username %}
+                {% if session.logged_in %}    
+                    {% if active_user.is_following(user) %}
+                        <form action="{{url_for('user_unfollow', username=user.username)}}" method="post">
+                            <input type="submit" value="-UnFollow">
+                        </form>    
+                    {% else %}
+                        <form action="{{url_for('user_follow', username=user.username)}}" method="post">
+                            <input type="submit" value="+Follow">            
+                        </form>    
+                    {% endif %}     
+                {% endif %}
+            {% endif %}
+        </div>    
+            
+        <div class="">       
+            <a href="{{url_for('show_followers', username=user.username)}}">    Total Follower : {{ user.followers() | length }} orang </a> <br>
+            <a href="{{url_for('show_following', username=user.username)}}">    Total Following : {{ user.following() | length }} orang </a>
+        </div>
+    </div>    
+    
+    <hr>
+
+    {% for message in messages %}
+        <p> {{message.content}} </p>
+    {% endfor %}            
+
+{% endblock %}
